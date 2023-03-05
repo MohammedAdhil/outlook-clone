@@ -1,0 +1,61 @@
+<div class="row">
+
+
+    <div class=" side-bar bg-light col-lg-2 col-sm-2">
+
+      <div><a routerLink=""><button class=" b1 border-0 w-100 mt-3 p-2"><i class="bi bi-send-fill"></i>
+            Send</button></a></div>
+      <div><a routerLink="draft"><button class="border-0 w-100 mt-3 p-2"><i class="bi bi-file-earmark-text"></i>
+            Draft</button></a></div>
+  
+    </div>
+  
+    <div class="col-lg-10 col-sm-10">
+  
+      <div>
+
+  
+      </div>
+  
+      <div class=" border p-2 content mt-2 d-flex justify-content-between align-items-center"
+        *ngFor="let item of sendItemArray; let i = index">
+        <div class="d-flex  justify-content w-100 p-3">
+  
+          <div>To: {{item.to}} </div>
+          <div>
+            <div class="ms-5"> {{item.subject}} - <span class="text-secondary">{{item.message}}</span></div>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-danger border-0" (click)="onDelete(i)"><i class="bi bi-trash3-fill"></i></button>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  
+  
+  <!-- Modal -->
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">New Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onItemDraft()"></button>
+        </div>
+        <div class="modal-body">
+          <input class="my-3 border-0 border-bottom w-100" type="text" placeholder="To" [(ngModel)]="sendObj.to"> 
+          <input class="my-3 border-0 border-bottom w-100" type="text" placeholder="Subject" [(ngModel)]="sendObj.subject"> 
+          <input class="my-3 border-0 border-bottom w-100 pb-5" type="text" placeholder="Message" [(ngModel)]="sendObj.message">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onItemDraft()">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onItemAdd()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
